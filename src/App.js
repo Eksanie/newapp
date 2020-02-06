@@ -12,6 +12,7 @@ function App() {
   const [loading, setLoading] = useState(false)
 
 
+
   async function getMemes(){
     setLoading(true)
     setMemes([])
@@ -40,17 +41,17 @@ function App() {
           }}
         />
         <Button variant = "contained" color = "primary" onClick ={getMemes}>
-          Search
+          <Search />
         </Button>
         </div>
         {memes.map((meme,i)=> <Meme key={i} {...meme} />)}
           </header>
+          {loading && <LinearProgress />}
     </div>
   );
 }
-function Meme({images, title}){
-  const {meme} = props
-  const url = meme.images.fixed_height.url
+function Meme({images, title}) {
+  const url = images.fixed_height.url
   return (<div className="meme" onClick={()=>window.open(url, '_blank')}>
     <div className="meme-title">{title}</div>
     <img height="200" alt="meme" src={url} />
